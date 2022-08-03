@@ -110,10 +110,6 @@ class retirementCalculatorPage extends Page {
         let element = await $('#yes-social-benefits');;
         console.log(await element.isSelected()); // outputs: true
         await expect(element).toBeSelected()
-
-        // expect(await element.isSelected()).to.eventually.equal(true);
-    
-        // await expect((await (await this.inputSocialBenefitsYes).isSelected())).toEqual(true)
         const $marriedOption =  await this.inputMaritalStatus
         await expect($marriedOption).toBeDisplayed()
         const $singleOption =  await this.inputSingleStatus
@@ -127,17 +123,12 @@ class retirementCalculatorPage extends Page {
         let element = await $('#no-social-benefits');;
         console.log(await element.isSelected()); // outputs: true
         await expect(element).toBeSelected()
-
         const $marriedOption =  await this.inputMaritalStatus
         await expect($marriedOption).not.toBeDisplayed();
-
-
         const $singleOption =  await this.inputSingleStatus
         await expect($singleOption).not.toBeDisplayed();
-
         const $socialSecurityOverideAmount =  await this.inputSocialSecurityOverride
         await expect($socialSecurityOverideAmount).not.toBeDisplayed();
-
     }
 
     async inputRetirementFormRequiredFields () {
@@ -145,49 +136,13 @@ class retirementCalculatorPage extends Page {
         await this.inputRetirementAge.setValue("64");
         await this.inputAnnualIncome.click()
         await this.inputAnnualIncome.setValue(Number('123000'))
-
-
         await this.inputTotalSavings.click()
         await this.inputTotalSavings.setValue(Number('420000'))
-
         await this.inputAnnualSavings.setValue("10")
-        // browser. pause(30000)
-
         await this.inputSavingsIncreaseRate.setValue("2")
         await this.inputSocialBenefitsYes.click()
         await this.inputMaritalStatus.click()
-
-        // browser. pause(30000)
-
-    
-
-        // console.log("in view port no 111111111 ",this.inputSocialBenefitsNo.isDisplayedInViewport())
-        // console.log("in view port yes 111111111 ",this.inputSocialBenefitsYes.isDisplayedInViewport())
-
-        // console.log("in view port no ******* ",this.inputSocialBenefitsNo.isDisplayedInViewport())
-        // console.log("in view port yes *******",this.inputSocialBenefitsYes.isDisplayedInViewport())
-
-
-
-        // let elementNo = this.inputSocialBenefitsNo
-        // console.log(await elementNo.isSelected());  // outputs: true
-        // let element = this.inputSocialBenefitsYes
-        // console.log(await element.isSelected());
-
-
-
-
-
         await this.btnCalculate.click();
-
-        // await browser.expectRequest('POST', 'https://www.securian.com/bin/calcXmlRequest', 400); // expect POST request with 400 statusCode
-
-        // const title = browser.getTitle()
-
-        // let responseMessage = await browser.getRequest('POST', 'https://www.securian.com/bin/calcXmlRequest')
-
-        // console.log("response is ",responseMessage.ret03Response)
-
         await browser.waitUntil(
             async () => (await $('#calculator-results-container > h3').getText()) === 'Results',
             {
@@ -195,9 +150,6 @@ class retirementCalculatorPage extends Page {
                 timeoutMsg: 'expected text to be different after 5s'
             }
         );
-
-
-
     }
 
     async inputRetirementFormAllFields () {
@@ -207,13 +159,9 @@ class retirementCalculatorPage extends Page {
         await this.inputAnnualIncome.setValue(Number('100000'))
         await this.inputSpouseAnnualIncome.click()
         await this.inputSpouseAnnualIncome.setValue(Number('75000'))
-
         await this.inputTotalSavings.click()
         await this.inputTotalSavings.setValue(Number('500000'))
-
         await this.inputAnnualSavings.setValue("10")
-        // browser. pause(30000)
-
         await this.inputSavingsIncreaseRate.setValue("2")
         await this.inputSocialBenefitsYes.click()
         await this.inputMaritalStatus.click()
@@ -238,13 +186,9 @@ class retirementCalculatorPage extends Page {
         await this.inputAnnualIncome.setValue(Number('100000'))
         await this.inputSpouseAnnualIncome.click()
         await this.inputSpouseAnnualIncome.setValue(Number('75000'))
-
         await this.inputTotalSavings.click()
         await this.inputTotalSavings.setValue(Number('500000'))
-
         await this.inputAnnualSavings.setValue("10")
-        // browser. pause(30000)
-
         await this.inputSavingsIncreaseRate.setValue("2")
         await this.inputSocialBenefitsYes.click()
         await this.inputMaritalStatus.click()
@@ -266,7 +210,6 @@ class retirementCalculatorPage extends Page {
         await this.inputPreRetirementROI.setValue("8")
         await this.inputPostRetirementROI.setValue("5")
         await this.saveDefaultValues.click()
-
         await browser.waitUntil(
             async () => (await $(`section[id='calculator-intro-section'] h2`).getText()) === 'Pre-retirement calculator',
             {
