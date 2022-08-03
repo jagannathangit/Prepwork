@@ -12,6 +12,7 @@
         "wdio-intercept-service": "^4.2.2"
     },
     "scripts": {
-        "wdio": "wdio run wdio.conf.js"
+        "test": "wdio run wdio.conf.js",
+        "test:ci": "wdio run wdio-github.conf.js"
     }
 }
