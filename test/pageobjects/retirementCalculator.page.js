@@ -45,8 +45,12 @@ class retirementCalculatorPage extends Page {
         return $(`label[for='no-social-benefits']`);
     }
 
+    // get inputMaritalStatus() {
+    //     return $(`label[for='married']`);
+    // }
+
     get inputMaritalStatus() {
-        return $(`label[for='married']`);
+        return $(`//label[contains(text(),'Married')]`);
     }
 
     get inputSingleStatus() {
