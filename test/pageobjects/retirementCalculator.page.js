@@ -197,6 +197,10 @@ class retirementCalculatorPage extends Page {
         await this.inputAnnualSavings.setValue("10")
         await this.inputSavingsIncreaseRate.setValue("2")
         await this.inputSocialBenefitsYes.click()
+        const marriedOption =  await this.inputMaritalStatus
+        await marriedOption.waitForDisplayed({ timeout: 3000 });
+        const singleOption =  await this.inputSingleStatus
+        await singleOption.waitForDisplayed({ timeout: 3000 });
         await this.inputMaritalStatus.click()
         await this.inputSocialSecurityOverride.click()
         await this.inputSocialSecurityOverride.setValue(Number('4000'))
