@@ -50,7 +50,7 @@ class retirementCalculatorPage extends Page {
     // }
 
     get inputMaritalStatus() {
-        return $(`//label[contains(text(),'Married')]`);
+        return $(`//div[@class='row social-security-field']//li[2]`);
     }
 
     get inputSingleStatus() {
@@ -145,6 +145,16 @@ class retirementCalculatorPage extends Page {
         await this.inputAnnualSavings.setValue("10")
         await this.inputSavingsIncreaseRate.setValue("2")
         await this.inputSocialBenefitsYes.click()
+        const marriedOption =  await this.inputMaritalStatus
+        await marriedOption.waitForDisplayed({ timeout: 3000 });
+        let clickable = await marriedOption.isClickable();
+        console.log("Is married option ",clickable); // outputs: true or false       
+        // wait for element to be clickable
+        await browser.waitUntil(() => marriedOption.isClickable())
+        // const singleOption =  await this.inputSingleStatus
+        // await singleOption.waitForDisplayed({ timeout: 3000 });
+        // let singleClickable = await singleOption.isClickable();
+        // console.log("Is single option ",singleClickable); // outputs: true or false       
         await this.inputMaritalStatus.click()
         await this.btnCalculate.click();
         await browser.waitUntil(
