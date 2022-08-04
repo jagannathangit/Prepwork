@@ -180,9 +180,10 @@ class retirementCalculatorPage extends Page {
         await this.inputSocialBenefitsYes.click()
         const marriedOption =  await this.inputMaritalStatus
         await marriedOption.waitForDisplayed({ timeout: 3000 });
-
-        const singleOption =  await this.inputSingleStatus
-        await singleOption.waitForDisplayed({ timeout: 3000 });
+        let clickable = await marriedOption.isClickable();
+        console.log("Is married option ",clickable); // outputs: true or false       
+        // wait for element to be clickable
+        await browser.waitUntil(() => marriedOption.isClickable())
         await this.inputMaritalStatus.click()
 
         await this.inputSocialSecurityOverride.click()
