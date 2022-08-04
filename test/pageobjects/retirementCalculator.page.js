@@ -226,10 +226,19 @@ class retirementCalculatorPage extends Page {
         await this.inputAnnualSavings.setValue("10")
         await this.inputSavingsIncreaseRate.setValue("2")
         await this.inputSocialBenefitsYes.click()
+        await browser.waitUntil(
+            async () => (await $(`//label[contains(text(),'Married')]`).getText()) === 'Married',
+            {
+                timeout: 5000,
+                timeoutMsg: 'expected text to be different after 5s'
+            }
+        );
         const marriedOption =  await this.inputMaritalStatus
         await marriedOption.waitForDisplayed({ timeout: 3000 });
-        const singleOption =  await this.inputSingleStatus
-        await singleOption.waitForDisplayed({ timeout: 3000 });
+        // let clickable = await marriedOption.isClickable();
+        // console.log("Is married option ",clickable); // outputs: true or false       
+        // wait for element to be clickable
+        await browser.waitUntil(() => marriedOption.isClickable())
         await this.inputMaritalStatus.click()
         await this.inputSocialSecurityOverride.click()
         await this.inputSocialSecurityOverride.setValue(Number('4000'))
